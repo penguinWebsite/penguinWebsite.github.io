@@ -1,38 +1,198 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Penguin</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penguin - Personal Website</title>
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
+        body {
+            font-family: "Open Sans", sans-serif; /* Change to your preferred font */
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #4285f4;
+            color: white;
+            text-align: left;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .christmas-hat {
+            position: absolute;
+            top: 22px;
+            left: 20px;
+            transform: translateY(-50%);
+            width: 30px; /* Adjust the size of the Christmas hat */
+            height: auto;
+        }
+
+        .greeting-banner {
+            background-color: #FFD700;
+            color: #333;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            display: block;
+            border-radius: 50%;
+            background-color: #4285f4;
+            background-image: url(penguin.PNG);
+            margin: 20px 0;
+            background-position-y: center;
+            background-position-x: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .profile-name {
+            font-size: 36px;
+            margin-top: 2px;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        section div {
+            flex: 1;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #4285f4;
+        }
+
+        p {
+            line-height: 1.8;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4285f4;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .snowflake {
+            position: fixed;
+            background: #fff;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <nav class="navContainer"> <!--Could surround the nav element with <header> tags to make it more semantically correct -->
-    <h1 class="navTitle">Penguin Web</h1> 
-  </nav>
+  <header>
+    &nbsp;&nbsp;&nbsp;&nbsp;Penguin Web
+    <img class="christmas-hat" src="Santa Hat.svg" alt="Christmas Hat">
+  </header> 
 
-  <div class="appContainer">
-    <div class="avatarContainer">
-      <div class="avatar"></div>
+    <div class="greeting-banner">
+        Happy New Year! 🎉 Wishing you joy and success in the coming year.
     </div>
-    <h1 class="name u-textCenter">Penguin!</h1>
-    <hr class="line" />
-    <div class="u-flex">
-      <section class="subContainer u-textCenter">
-        <h4 class="subTitle">About Me</h4>
-        <p>
-          I am a PhD from Penguin University.
-        </p>
-      </section>
-      <section class="subContainer u-textCenter">
-        <h4 class="subTitle">My Favorite</h4>
-        <p>
-          I like to listen to music in my big house.
-        </p>
-      </section>
+
+    <div class="profile-container">
+        <div class="profile-image"></div>
+        <div class="profile-name">Penguin!</div>
     </div>
-  </div>
+
+    <section id="about-me">
+        <div>
+            <h2>About Me</h2>
+            <p>I'm currently an overseas PhD student at Penguin University.</p>
+        </div>
+        
+        <div>
+            <h2>My Favorite</h2>
+            <p>I love listening to music, cooking, and eating all kinds of good food!</p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2023 Alexa - Personal Website
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create fewer snowflakes dynamically
+            const numberOfSnowflakes = 50;
+
+            for (let i = 0; i < numberOfSnowflakes; i++) {
+                createSnowflake();
+            }
+
+            // Function to create a snowflake
+            function createSnowflake() {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+
+                // Randomize starting position and animation duration
+                const startPosition = Math.random() * 100;
+                const animationDuration = 5 + Math.random() * 5;
+
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.animationDuration = `${animationDuration}s`;
+                snowflake.style.animationDelay = `-${Math.random() * animationDuration}s`;
+
+                document.body.appendChild(snowflake);
+
+                // Remove snowflake from the DOM after animation ends
+                snowflake.addEventListener('animationiteration', () => {
+                    document.body.removeChild(snowflake);
+                    createSnowflake();
+                });
+            }
+        });
+    </script>
 </body>
-
 </html>
